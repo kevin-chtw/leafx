@@ -2,9 +2,10 @@ package mongodb
 
 import (
 	"container/heap"
-	"leafx/log"
 	"sync"
 	"time"
+
+	"github.com/kevin-chtw/leafx/log"
 
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"

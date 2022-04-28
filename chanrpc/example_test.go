@@ -2,8 +2,9 @@ package chanrpc_test
 
 import (
 	"fmt"
-	"leafx/chanrpc"
 	"sync"
+
+	"github.com/kevin-chtw/leafx/chanrpc"
 )
 
 func Example() {

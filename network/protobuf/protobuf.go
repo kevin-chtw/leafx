@@ -4,10 +4,11 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"leafx/chanrpc"
-	"leafx/log"
 	"math"
 	"reflect"
+
+	"github.com/kevin-chtw/leafx/chanrpc"
+	"github.com/kevin-chtw/leafx/log"
 
 	"github.com/golang/protobuf/proto"
 )

@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"time"
 
-	"leafx/log"
+	"github.com/kevin-chtw/leafx/log"
 
 	"github.com/gorilla/websocket"
 )

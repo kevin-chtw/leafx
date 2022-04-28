@@ -2,13 +2,14 @@ package console
 
 import (
 	"fmt"
-	"leafx/chanrpc"
-	"leafx/conf"
-	"leafx/log"
 	"os"
 	"path"
 	"runtime/pprof"
 	"time"
+
+	"github.com/kevin-chtw/leafx/chanrpc"
+	"github.com/kevin-chtw/leafx/conf"
+	"github.com/kevin-chtw/leafx/log"
 )
 
 var commands = []Command{

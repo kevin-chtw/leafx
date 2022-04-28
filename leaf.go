@@ -1,14 +1,14 @@
 package leaf
 
 import (
-	"leafx/cluster"
 	"os"
 	"os/signal"
 
-	"leafx/conf"
-	"leafx/console"
-	"leafx/log"
-	"leafx/module"
+	"github.com/kevin-chtw/leafx/cluster"
+	"github.com/kevin-chtw/leafx/conf"
+	"github.com/kevin-chtw/leafx/console"
+	"github.com/kevin-chtw/leafx/log"
+	"github.com/kevin-chtw/leafx/module"
 )
 
 func Run(mods ...module.Module) {

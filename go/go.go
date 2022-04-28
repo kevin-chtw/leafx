@@ -2,10 +2,11 @@ package g
 
 import (
 	"container/list"
-	"leafx/conf"
-	"leafx/log"
 	"runtime"
 	"sync"
+
+	"github.com/kevin-chtw/leafx/conf"
+	"github.com/kevin-chtw/leafx/log"
 )
 
 // one Go per goroutine (goroutine not safe)
