@@ -2,8 +2,9 @@ package timer_test
 
 import (
 	"fmt"
-	"leafx/timer"
 	"time"
+
+	"github.com/kevin-chtw/leafx/timer"
 )
 
 func ExampleTimer() {

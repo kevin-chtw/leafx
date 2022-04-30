@@ -1,10 +1,11 @@
 package module
 
 import (
-	"leafx/conf"
-	"leafx/log"
 	"runtime"
 	"sync"
+
+	"github.com/kevin-chtw/leafx/conf"
+	"github.com/kevin-chtw/leafx/log"
 )
 
 type Module interface {

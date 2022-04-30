@@ -4,8 +4,8 @@ import (
 	"math"
 	"time"
 
-	"leafx/conf"
-	"leafx/network"
+	"github.com/kevin-chtw/leafx/conf"
+	"github.com/kevin-chtw/leafx/network"
 )
 
 var (

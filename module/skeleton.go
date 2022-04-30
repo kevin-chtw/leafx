@@ -1,11 +1,12 @@
 package module
 
 import (
-	"leafx/chanrpc"
-	"leafx/console"
-	g "leafx/go"
-	"leafx/timer"
 	"time"
+
+	"github.com/kevin-chtw/leafx/chanrpc"
+	"github.com/kevin-chtw/leafx/console"
+	g "github.com/kevin-chtw/leafx/go"
+	"github.com/kevin-chtw/leafx/timer"
 )
 
 type Skeleton struct {

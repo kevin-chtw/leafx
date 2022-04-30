@@ -1,9 +1,10 @@
 package network
 
 import (
-	"leafx/log"
 	"net"
 	"sync"
+
+	"github.com/kevin-chtw/leafx/log"
 )
 
 type ConnSet map[net.Conn]struct{}

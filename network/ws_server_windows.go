@@ -1,4 +1,4 @@
-// +build !windows
+// +build windows
 
 package network
 
@@ -17,7 +17,7 @@ type WSServer struct {
 	HTTPTimeout time.Duration
 	NewAgent    func(*WSConn) Agent
 	upgrader    websocket.Upgrader
-	epoller     *epoll
+	handler     *WSHandler
 }
 
 func (server *WSServer) Start() {
@@ -29,12 +29,7 @@ func (server *WSServer) Start() {
 		HandshakeTimeout: server.HTTPTimeout,
 		CheckOrigin:      func(_ *http.Request) bool { return true },
 	}
-
-	var err error
-	if server.epoller, err = MkEpoll(); err != nil {
-		log.Fatal(err.Error())
-	}
-
+	server.handler = MkHandler()
 	go server.run()
 }
 
@@ -45,44 +40,16 @@ func (server *WSServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	wsConn := newWSConn(conn, server, server.MaxMsgLen)
-	if err = server.epoller.Add(wsConn); err != nil {
-		log.Error("Failed to add connection,%s", err.Error())
-		conn.Close()
-	}
+	server.handler.accept(wsConn)
+
 }
 
 func (server *WSServer) run() {
-	go server.startEpoller()
 	http.HandleFunc("/", server.ServeHTTP)
 	if err := http.ListenAndServe(server.Addr, nil); err != nil {
 		log.Fatal("Ws listening err", "", "err", err.Error())
 	}
 }
-
-func (server *WSServer) startEpoller() {
-	for {
-		connections, err := server.epoller.Wait()
-		if err != nil {
-			log.Error("Failed to epoll wait %v", err)
-			continue
-		}
-		for _, conn := range connections {
-			if conn == nil {
-				break
-			}
-			_, msg, err := conn.conn.ReadMessage()
-			if err != nil {
-				if err := server.epoller.Remove(conn); err != nil {
-					log.Error("Failed to remove %v", err)
-				}
-				conn.Close()
-			} else {
-				go conn.agent.HandleMsg(msg)
-			}
-		}
-	}
-}
-
 func (server *WSServer) Close() {
 	//epoller
 }

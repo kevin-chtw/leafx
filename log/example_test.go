@@ -1,8 +1,9 @@
 package log_test
 
 import (
-	"leafx/log"
 	l "log"
+
+	"github.com/kevin-chtw/leafx/log"
 )
 
 func Example() {
