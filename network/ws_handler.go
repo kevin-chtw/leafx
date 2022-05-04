@@ -33,16 +33,15 @@ func (h *WSHandler) remove(conn *WSConn) {
 }
 
 func (h *WSHandler) accept(conn *WSConn) {
-	defer func() {
-		conn.Close()
-		h.remove(conn)
-	}()
-
 	h.add(conn)
 	go h.read(conn)
 }
 
 func (h *WSHandler) read(conn *WSConn) {
+	defer func() {
+		conn.Close()
+		h.remove(conn)
+	}()
 	for {
 		msg, err := conn.ReadMsg()
 		if err != nil {
