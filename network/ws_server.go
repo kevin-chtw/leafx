@@ -1,3 +1,4 @@
+//go:build !windows
 // +build !windows
 
 package network
@@ -6,9 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/kevin-chtw/leafx/log"
-
 	"github.com/gorilla/websocket"
+	"github.com/kevin-chtw/leafx/log"
 )
 
 type WSServer struct {
@@ -63,7 +63,6 @@ func (server *WSServer) startEpoller() {
 	for {
 		connections, err := server.epoller.Wait()
 		if err != nil {
-			log.Error("Failed to epoll wait %v", err)
 			continue
 		}
 		for _, conn := range connections {
