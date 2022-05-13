@@ -34,6 +34,7 @@ func newWSConn(conn *websocket.Conn, handler *WSServer, maxMsgLen uint32) *WSCon
 func (wsConn *WSConn) doDestroy() {
 	wsConn.conn.UnderlyingConn().(*net.TCPConn).SetLinger(0)
 	wsConn.conn.Close()
+	wsConn.agent.OnClose()
 
 	if !wsConn.closeFlag {
 		wsConn.closeFlag = true
